@@ -1,0 +1,58 @@
+<div class="login-container">
+  <!-- Welcome Message -->
+  <div class="welcome-message">
+    <h1>Welcome to Technikon</h1>
+  </div>
+
+  <!-- Login Form -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        required
+        placeholder="Enter your email"
+        class="form-control"
+      />
+      <!-- Error message for email -->
+      <div *ngIf="submitted && loginForm.get('email')?.invalid" class="error-message">
+        <small *ngIf="loginForm.get('email')?.errors?.required">Email is required</small>
+        <small *ngIf="loginForm.get('email')?.errors?.email">Enter a valid email</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        required
+        placeholder="Enter your password"
+        class="form-control"
+      />
+      <!-- Error message for password -->
+      <div *ngIf="submitted && loginForm.get('password')?.invalid" class="error-message">
+        <small *ngIf="loginForm.get('password')?.errors?.required">Password is required</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+
+    <!-- Display login error message if login fails -->
+    <div *ngIf="loginError" class="error-message">
+      {{ loginError }}
+    </div>
+  </form>
+
+  <!-- Registration Link -->
+  <div class="register-link">
+    <p>Don't have an account? <a [routerLink]="['/register']">Register here</a></p>
+  </div>
+</div>
+
+
